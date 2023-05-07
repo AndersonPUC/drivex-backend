@@ -1,2 +1,1 @@
 # drivex - backend
-# implementado gcloud
