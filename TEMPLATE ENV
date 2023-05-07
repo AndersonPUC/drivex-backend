@@ -1,0 +1,9 @@
+DIALECT=postgres
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASS=postgres
+DB_NAME=drivex
+DB_PORT=5432
+
+
+USER_KEY=e1bf82694b7048e2bffa55cb122ef63b

@@ -1,0 +1,16 @@
+runtime: nodejs12
+service: api
+env_variables:
+    DB_HOST: "/cloudsql/drivex-386001:us-east1:bd-drivex"
+    DB_USER: "postgres"
+    DB_PASS: "35g5PmVzGOCA"
+    DB_NAME: "drivexdb"
+    DB_PORT: "5432"
+    DIALECT: "postgres"
+
+    USER_KEY: "e1bf82694b7048e2bffa55cb122ef63b"
+
+automatic_scaling:
+    max_instances: 20
+    max_idle_instances: 3
+    max_pending_latency: 120ms
