@@ -12,19 +12,20 @@ module.exports = Router({ mergeParams: true }).post(
 			if(!validator.isJWT(bearer))
 				return res.status(403).send({ valido: false, msg: 'Bearer inválido!' })
 
-			const tokenVerify = jwt.verify(bearer, process.env.USER_KEY)
-			if (!tokenVerify) return res.status(403).send({ valido: false, msg: 'Assinatura inválida!' })
-
+			var tokenVerify = jwt.verify(bearer, process.env.USER_KEY)
+			
 			const usuario = await models.usuario.findByPk(tokenVerify.id)
 			if (!usuario) return res.status(403).send({ valido: false, msg: 'Usuário não encontrado!' })
 
 			if (usuario.inativo) return res.status(403).send({ valido: false, msg: 'Usuário inativo!' })
 
-			const { id, nome, email, role, inativo } = usuario
+			const { id, nome, email, role, inativo, empresaId } = usuario
 
-			return res.json({ id, nome, email, role, inativo })
+			return res.json({ id, nome, email, role, inativo, empresaId })
+
 		} catch (error) {
-			return next(error)
+			console.log(error)
+			return res.status(403).send({ valido: false, msg: 'Token expirado.' })
 		}
 	}
 )

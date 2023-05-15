@@ -29,4 +29,8 @@ module.exports = sequelize => {
 			allowNull: false
 		}
 	})
+
+	empresa.belongsTo(municipio),
+	municipio.belongsTo(uf)
+
 }

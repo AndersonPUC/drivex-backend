@@ -28,7 +28,8 @@ module.exports = Router({ mergeParams: true }).post(
 				id,
 				nome,
 				role,
-				inativo
+				inativo,
+				empresaId
 			} = usuario
 
 			const payload = {
@@ -37,7 +38,8 @@ module.exports = Router({ mergeParams: true }).post(
 				email: email,
 				role: role,
 				inativo: inativo,
-				exp: expirationToken
+				exp: expirationToken,
+				empresaId: empresaId,
 			}
 
 			const accessToken = jwt.sign(payload, process.env.USER_KEY)

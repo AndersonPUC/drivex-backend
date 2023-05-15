@@ -23,10 +23,17 @@ module.exports = Router({ mergeParams: true }).post(
 			const salt = bcrypt.genSaltSync(10)
 			const senhaBcrypt = bcrypt.hashSync(senha, salt)
 
+			/*
+			 * aqui não é necessário receber o parametro, futuramente em outras versoes é
+			 * importante que passe a receber o identificador ou cnpj da empresa que está
+			 * cadastrando o usuário como um controle interno
+			 */
+			
 			await Usuario.create({
 				nome,
 				email,
-				senha: senhaBcrypt
+				senha: senhaBcrypt,
+				empresaId: 1
 			})
 
 			return res.status(200).json({ valido: true, msg: 'Usuário criado com sucesso!' })
