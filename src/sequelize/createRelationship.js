@@ -4,10 +4,28 @@ module.exports = sequelize => {
 		municipio,
 		uf,
 		usuario,
+		cliente,
+		endereco
 	} = sequelize.models
 
 	empresa.hasMany(usuario, {
 		as: 'usuarios',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	empresa.hasMany(cliente, {
+		as: 'clientes',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+	
+	cliente.hasMany(endereco, {
+		as: 'enderecos',
 		onDelete: 'CASCADE',
 		foreignKey: {
 			allowNull: false
@@ -31,6 +49,6 @@ module.exports = sequelize => {
 	})
 
 	empresa.belongsTo(municipio),
+	cliente.belongsTo(municipio),
 	municipio.belongsTo(uf)
-
 }
