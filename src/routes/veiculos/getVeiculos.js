@@ -36,7 +36,9 @@ module.exports = Router({ mergeParams: true }).get(
 				offset: getOffset(page, limit),
 				order
 			})
-			return res.json(veiculos)
+			const total = await models.veiculo.count({ where })
+
+			return res.json({ total, veiculos })
 		} catch (error) {
 			return next(error)
 		}

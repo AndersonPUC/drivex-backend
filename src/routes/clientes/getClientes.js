@@ -31,13 +31,15 @@ module.exports = Router({ mergeParams: true }).get(
 				}
 			}
 
-			const usuarios = await models.cliente.findAll({
+			const clientes = await models.cliente.findAll({
 				where,
 				limit: Number.parseInt(limit),
 				offset: getOffset(page, limit),
 				order
 			})
-			return res.json(usuarios)
+			const total = await models.cliente.count({ where })
+			
+			return res.json({ total, clientes })
 		} catch (error) {
 			return next(error)
 		}

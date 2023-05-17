@@ -38,7 +38,10 @@ module.exports = Router({ mergeParams: true }).get(
 				offset: getOffset(page, limit),
 				order
 			})
-			return res.json(usuarios)
+
+			const total = await Usuario.count({ where })
+			
+			return res.json({ total, usuarios })
 		} catch (error) {
 			return next(error)
 		}

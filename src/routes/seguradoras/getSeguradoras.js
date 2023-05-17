@@ -37,7 +37,9 @@ module.exports = Router({ mergeParams: true }).get(
 				offset: getOffset(page, limit),
 				order
 			})
-			return res.json(seguradoras)
+			const total = await models.seguradora.count({ where })
+
+			return res.json({ total, seguradoras })
 		} catch (error) {
 			return next(error)
 		}
