@@ -5,7 +5,8 @@ module.exports = sequelize => {
 		uf,
 		usuario,
 		cliente,
-		endereco
+		endereco,
+		seguradora
 	} = sequelize.models
 
 	empresa.hasMany(usuario, {
@@ -18,6 +19,14 @@ module.exports = sequelize => {
 
 	empresa.hasMany(cliente, {
 		as: 'clientes',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	empresa.hasMany(seguradora, {
+		as: 'seguradoras',
 		onDelete: 'CASCADE',
 		foreignKey: {
 			allowNull: false
