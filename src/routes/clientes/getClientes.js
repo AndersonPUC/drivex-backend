@@ -24,10 +24,10 @@ module.exports = Router({ mergeParams: true }).get(
 
 			if (search) {
 				where[Op.or] = {
-					nome: { [Op.like]: `%${search}%` },
-					sobrenome: { [Op.like]: `%${search}%` },
-					cpf: { [Op.like]: `%${search}%` },
-					email: { [Op.like]: `%${search}%` },
+					nome: { [Op.iLike]: `%${search}%` },
+					sobrenome: { [Op.iLike]: `%${search}%` },
+					cpf: { [Op.iLike]: `%${search}%` },
+					email: { [Op.iLike]: `%${search}%` },
 				}
 			}
 

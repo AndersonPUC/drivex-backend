@@ -24,9 +24,9 @@ module.exports = Router({ mergeParams: true }).get(
 
 			if (search) {
 				where[Op.or] = {
-					marca: { [Op.like]: `%${search}%` },
-					modelo: { [Op.like]: `%${search}%` },
-					placa: { [Op.like]: `%${search}%` },
+					marca: { [Op.iLike]: `%${search}%` },
+					modelo: { [Op.iLike]: `%${search}%` },
+					placa: { [Op.iLike]: `%${search}%` },
 				}
 			}
 
