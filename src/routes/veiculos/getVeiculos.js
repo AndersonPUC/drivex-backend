@@ -4,7 +4,7 @@ const userAuthMiddleware = require('../../middlewares/userAuth.middleware')
 const getOffset = require('../../helpers/getOffset')
 
 module.exports = Router({ mergeParams: true }).get(
-	'/seguradoras',
+	'/veiculos',
 	userAuthMiddleware,
 	async (req, res, next) => {
 		try {
@@ -12,7 +12,7 @@ module.exports = Router({ mergeParams: true }).get(
 				search = '',
 				page = 1,
 				limit = 10,
-				sortBy = 'nome_social',
+				sortBy = 'modelo',
 				sortDesc = false,
 			} = req.query
             const { models } = req.db
@@ -24,20 +24,19 @@ module.exports = Router({ mergeParams: true }).get(
 
 			if (search) {
 				where[Op.or] = {
-					nome_social: { [Op.like]: `%${search}%` },
-					nome_fantasia: { [Op.like]: `%${search}%` },
-					cnpj: { [Op.like]: `%${search}%` },
-					email: { [Op.like]: `%${search}%` },
+					marca: { [Op.like]: `%${search}%` },
+					modelo: { [Op.like]: `%${search}%` },
+					placa: { [Op.like]: `%${search}%` },
 				}
 			}
 
-			const seguradoras = await models.seguradora.findAll({
+			const veiculos = await models.veiculo.findAll({
 				where,
 				limit: Number.parseInt(limit),
 				offset: getOffset(page, limit),
 				order
 			})
-			return res.json(seguradoras)
+			return res.json(veiculos)
 		} catch (error) {
 			return next(error)
 		}

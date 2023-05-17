@@ -19,7 +19,7 @@ module.exports = Router({ mergeParams: true }).post(
             if (!nome_fantasia) return res.status(400).json({ valido: false, msg: 'nome_fantasia não informado!'})
             if (!email) return res.status(400).json({ valido: false, msg: 'email não informado!'})
             
-            const cnpjExists = await models.seguradora.findOne({ where: { email } })
+            const cnpjExists = await models.seguradora.findOne({ where: { cnpj } })
 			if(cnpjExists) return res.status(400).json({ valido: false, msg: 'Este CNPJ já está sendo utilizado!' })
 
 			const emailExists = await models.seguradora.findOne({ where: { email } })

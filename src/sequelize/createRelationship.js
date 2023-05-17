@@ -6,7 +6,9 @@ module.exports = sequelize => {
 		usuario,
 		cliente,
 		endereco,
-		seguradora
+		seguradora,
+		veiculo,
+		categoria
 	} = sequelize.models
 
 	empresa.hasMany(usuario, {
@@ -27,6 +29,22 @@ module.exports = sequelize => {
 
 	empresa.hasMany(seguradora, {
 		as: 'seguradoras',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	empresa.hasMany(veiculo, {
+		as: 'veiculos',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	categoria.hasMany(veiculo, {
+		as: 'veiculos',
 		onDelete: 'CASCADE',
 		foreignKey: {
 			allowNull: false
