@@ -11,6 +11,6 @@ env_variables:
     USER_KEY: "e1bf82694b7048e2bffa55cb122ef63b"
 
 automatic_scaling:
-    max_instances: 20
+    max_instances: 3
     max_idle_instances: 3
     max_pending_latency: 120ms
