@@ -15,7 +15,6 @@ module.exports = Router({ mergeParams: true }).post(
                 telefone,
                 celular,
                 dt_nascimento,
-                municipioId
             } = req.body
 			const { models } = req.db
 
@@ -27,9 +26,7 @@ module.exports = Router({ mergeParams: true }).post(
             if (!telefone) return res.status(400).json({ valido: false, msg: 'telefone não informado!'})
             if (!celular) return res.status(400).json({ valido: false, msg: 'celular não informado!'})
             if (!dt_nascimento) return res.status(400).json({ valido: false, msg: 'dt_nascimento não informado!'})
-            if (!municipioId) return res.status(400).json({ valido: false, msg: 'municipioId não informado!'})
             
-
 			const emailExists = await models.cliente.findOne({ where: { email } })
 			if(emailExists) return res.status(400).json({ valido: false, msg: 'Este e-mail já está sendo utilizado!' })
 
@@ -39,7 +36,7 @@ module.exports = Router({ mergeParams: true }).post(
             const cnhExists = await models.cliente.findOne({ where: { cpf } })
 			if(cnhExists) return res.status(400).json({ valido: false, msg: 'Esta CNH já está sendo utilizada!' })
 
-            await models.cliente.create({
+            var result = await models.cliente.create({
                 nome,
                 sobrenome,
                 email,
@@ -48,11 +45,10 @@ module.exports = Router({ mergeParams: true }).post(
                 telefone,
                 celular,
                 dt_nascimento,
-                municipioId,
                 empresaId: 1
 			})
 
-			return res.status(200).json({ valido: false, msg: 'Cliente inserido com sucesso!'})
+			return res.status(200).json({ valido: true, msg: 'Cliente inserido com sucesso!', id: result.id })
 		} catch (error) {
 			return next(error)
 		}

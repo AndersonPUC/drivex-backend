@@ -76,6 +76,6 @@ module.exports = sequelize => {
 	})
 
 	empresa.belongsTo(municipio),
-	cliente.belongsTo(municipio),
+	endereco.belongsTo(municipio),
 	municipio.belongsTo(uf)
 }
