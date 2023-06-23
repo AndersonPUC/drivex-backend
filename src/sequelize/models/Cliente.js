@@ -20,7 +20,8 @@ module.exports = sequelize => {
 			telefone: { type: DataTypes.STRING(11), allowNull: false },
 			celular: { type: DataTypes.STRING(11), allowNull: false },
 			dt_nascimento: { type: DataTypes.DATE, allowNull: false },
-			ativo: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true, }
+			ativo: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true, },
+			tipo_cnh: { type: DataTypes.ENUM('A', 'B', 'AB'), allowNull: false, defaultValue: 'AB', },
 		},
 		{
 			tableName: 'clientes'

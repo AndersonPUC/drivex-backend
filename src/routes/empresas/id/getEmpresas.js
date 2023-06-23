@@ -14,7 +14,7 @@ module.exports = Router({ mergeParams: true }).get(
                 include:
                 {
                     model: models.municipio,
-                    equired: true,
+                    required: true,
                     attributes: ['municipio'],
                     include: { model: models.uf, equired: true, attributes: ['estado', 'uf'] }
                 }
