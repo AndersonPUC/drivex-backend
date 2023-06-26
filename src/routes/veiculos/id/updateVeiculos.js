@@ -46,7 +46,7 @@ module.exports = Router({ mergeParams: true }).put(
             veiculo.cor=cor
             veiculo.placa=placa
             veiculo.renavam=renavam
-            veiculo.categorium_id=categoria_id
+            veiculo.categoriumId=categoria_id
 
 			await veiculo.save()
 
