@@ -9,6 +9,7 @@ module.exports = sequelize => {
 			nome_social: { type: DataTypes.STRING(120), allowNull: false },
 			nome_fantasia: { type: DataTypes.STRING(120), allowNull: false },
 			email: { type: DataTypes.STRING(120), allowNull: false, unique: true },
+			ativo: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true, },
 		},
 		{
 			tableName: 'seguradoras'

@@ -14,6 +14,7 @@ module.exports = Router({ mergeParams: true }).get(
 				limit = 10,
 				sortBy = 'nome_social',
 				sortDesc = false,
+				ativo = true,
 			} = req.query
             const { models } = req.db
 
@@ -30,6 +31,8 @@ module.exports = Router({ mergeParams: true }).get(
 					email: { [Op.iLike]: `%${search}%` },
 				}
 			}
+			
+			where.ativo = ativo
 
 			const seguradoras = await models.seguradora.findAll({
 				where,
