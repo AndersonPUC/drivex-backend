@@ -17,7 +17,7 @@ module.exports = sequelize => {
 			ano_fabricacao: { type: DataTypes.SMALLINT, allowNull: false },
 			ano_modelo: { type: DataTypes.SMALLINT, allowNull: false },
 			cor: { type: DataTypes.STRING(60), allowNull: false },
-			placa: { type: DataTypes.STRING(7), allowNull: false, unique: true },
+			placa: { type: DataTypes.STRING(8), allowNull: false, unique: true },
 			renavam: { type: DataTypes.STRING(11), allowNull: false, unique: true },
 			ativo: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true, }
 		},

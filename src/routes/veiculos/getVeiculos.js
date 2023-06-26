@@ -14,6 +14,7 @@ module.exports = Router({ mergeParams: true }).get(
 				limit = 10,
 				sortBy = 'modelo',
 				sortDesc = false,
+				ativo = true,
 			} = req.query
             const { models } = req.db
 
@@ -30,6 +31,8 @@ module.exports = Router({ mergeParams: true }).get(
 				}
 			}
 
+			where.ativo = ativo
+			
 			const veiculos = await models.veiculo.findAll({
 				where,
 				limit: Number.parseInt(limit),
