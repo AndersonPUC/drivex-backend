@@ -8,7 +8,8 @@ module.exports = sequelize => {
 		endereco,
 		seguradora,
 		veiculo,
-		categoria
+		categoria,
+		locacao,
 	} = sequelize.models
 
 	empresa.hasMany(usuario, {
@@ -37,6 +38,46 @@ module.exports = sequelize => {
 
 	empresa.hasMany(veiculo, {
 		as: 'veiculos',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	empresa.hasMany(locacao, {
+		as: 'locacoes',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	veiculo.hasMany(locacao, {
+		as: 'locacoes',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	cliente.hasMany(locacao, {
+		as: 'locacoes',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	seguradora.hasMany(locacao, {
+		as: 'locacoes',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
+
+	municipio.hasMany(locacao, {
+		as: 'locacoes',
 		onDelete: 'CASCADE',
 		foreignKey: {
 			allowNull: false
@@ -75,7 +116,9 @@ module.exports = sequelize => {
 		}
 	})
 
+
 	empresa.belongsTo(municipio),
 	endereco.belongsTo(municipio),
 	municipio.belongsTo(uf)
+	
 }
