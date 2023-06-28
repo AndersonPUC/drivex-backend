@@ -9,11 +9,29 @@ module.exports = Router({ mergeParams: true }).get(
 			const { id } = req.params
 			const { models } = req.db
 
-			const locacao = await models.locacao.findByPk(id)
+			const locacao = await models.locacao.findOne({
+				where: { id },
+				attributes: { exclude: ['clienteId', 'veiculoId'] },
+				include: [{
+					model: models.cliente,
+					required: true,
+					attributes: ['id', 'nome', 'sobrenome'],
+				}, {
+					model: models.veiculo,
+					required: true,
+					attributes: ['id', 'marca', 'modelo'],
+					include: {
+						model: models.categoria,
+						required: true,
+						attributes: ['id', 'categoria'],
+					}
+				}]
+
+			})
 
 			if (!locacao)
 				return res.status(400).json({ valido: false, msg: 'Locação não cadastrada!' })
-			
+
 			return res.json(locacao)
 		} catch (error) {
 			return next(error)

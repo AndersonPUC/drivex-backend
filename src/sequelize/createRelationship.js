@@ -120,5 +120,7 @@ module.exports = sequelize => {
 	empresa.belongsTo(municipio),
 	endereco.belongsTo(municipio),
 	municipio.belongsTo(uf)
-	
+	locacao.belongsTo(cliente)
+	locacao.belongsTo(veiculo)
+	veiculo.belongsTo(categoria)
 }

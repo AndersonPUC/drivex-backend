@@ -38,7 +38,22 @@ module.exports = Router({ mergeParams: true }).get(
 				//where,
 				limit: Number.parseInt(limit),
 				offset: getOffset(page, limit),
-				order
+				order,
+				attributes: { exclude: ['clienteId', 'veiculoId'] },
+				include: [{
+					model: models.cliente,
+					required: true,
+					attributes: ['id', 'nome', 'sobrenome'],
+				}, {
+					model: models.veiculo,
+					required: true,
+					attributes: ['id', 'marca', 'modelo'],
+					include: {
+						model: models.categoria,
+						required: true,
+						attributes: ['id', 'categoria'],
+					}
+				}]
 			})
 			const total = await models.locacao.count(/*{ where }*/)
 
