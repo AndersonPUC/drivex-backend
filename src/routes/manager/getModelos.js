@@ -13,7 +13,7 @@ module.exports = Router({ mergeParams: true }).get(
 				marca,
 			} = req.query
 
-			const modelos = await models.veiculo.findAll({ where: { categoriumId: categoria, marca: marca }, attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('modelo')) ,'modelo']] })
+			const modelos = await models.veiculo.findAll({ where: { categoriumId: categoria, marca: marca }, attributes: ['id', 'modelo'] })
 			
             return res.json(modelos)
 		} catch (error) {

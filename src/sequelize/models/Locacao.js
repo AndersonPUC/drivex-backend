@@ -14,7 +14,7 @@ module.exports = sequelize => {
 			},
 			dt_locacao: { type: DataTypes.DATE, allowNull: false },
 			dt_previsao_entrega: { type: DataTypes.DATE, allowNull: false },
-			dt_entrega: { type: DataTypes.DATE, allowNull: false },
+			dt_entrega: { type: DataTypes.DATE, allowNull: true },
 			km_inicial: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
 			km_final: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
 			observacoes: { type: DataTypes.TEXT },
