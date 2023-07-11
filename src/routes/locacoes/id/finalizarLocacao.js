@@ -2,7 +2,7 @@ const Router = require('express').Router
 const userAuthMiddleware = require('../../../middlewares/userAuth.middleware')
 
 module.exports = Router({ mergeParams: true }).put(
-	'/locacoes/:id',
+	'/locacoes/:id/finalizar',
 	userAuthMiddleware,
 	async (req, res, next) => {
 		try {
