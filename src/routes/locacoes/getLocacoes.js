@@ -9,7 +9,7 @@ module.exports = Router({ mergeParams: true }).get(
 	async (req, res, next) => {
 		try {
 			const {
-				search = '',
+				// search = '',
 				page = 1,
 				limit = 10,
 				sortBy = 'dt_locacao',
@@ -23,19 +23,19 @@ module.exports = Router({ mergeParams: true }).get(
 				[sortBy, sortDesc == true || sortDesc == 'true' ? 'DESC' : 'ASC']
 			]
 
-			if (search) {
-				where[Op.or] = {
-					nome_social: { [Op.iLike]: `%${search}%` },
-					nome_fantasia: { [Op.iLike]: `%${search}%` },
-					cnpj: { [Op.iLike]: `%${search}%` },
-					email: { [Op.iLike]: `%${search}%` },
-				}
-			}
+			// if (search) {
+			// 	where[Op.or] = {
+			// 		nome_social: { [Op.iLike]: `%${search}%` },
+			// 		nome_fantasia: { [Op.iLike]: `%${search}%` },
+			// 		cnpj: { [Op.iLike]: `%${search}%` },
+			// 		email: { [Op.iLike]: `%${search}%` },
+			// 	}
+			// }
 			
 			where.ativo = ativo
 
 			const locacoes = await models.locacao.findAll({
-				//where,
+				where,
 				limit: Number.parseInt(limit),
 				offset: getOffset(page, limit),
 				order,
@@ -55,7 +55,7 @@ module.exports = Router({ mergeParams: true }).get(
 					}
 				}]
 			})
-			const total = await models.locacao.count(/*{ where }*/)
+			const total = await models.locacao.count({ where })
 
 			return res.json({ total, locacoes })
 		} catch (error) {
