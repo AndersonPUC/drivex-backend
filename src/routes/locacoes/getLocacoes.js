@@ -31,6 +31,20 @@ module.exports = Router({ mergeParams: true }).get(
 			// 		email: { [Op.iLike]: `%${search}%` },
 			// 	}
 			// }
+
+
+			// if(verEntregues == 'true') {
+			// 	where[Op.or] = {
+			// 		dt_entrega: { [Op.not]: null }
+			// 	}
+			// }
+			
+			// if(verPendentes == 'true') {
+			// 	where[Op.or] = {
+			// 		dt_entrega: { [Op.is]: null }
+			// 	}
+			// }
+			
 			
 			where.ativo = ativo
 

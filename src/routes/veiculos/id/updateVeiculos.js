@@ -50,7 +50,7 @@ module.exports = Router({ mergeParams: true }).put(
 
 			await veiculo.save()
 
-			return res.status(200).json({ valido: false, msg: 'Veiculo alterado com sucesso!'})
+			return res.status(200).json({ valido: true, msg: 'Veiculo alterado com sucesso!'})
 		} catch (error) {
 			return next(error)
 		}
