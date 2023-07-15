@@ -25,7 +25,6 @@ module.exports = Router({ mergeParams: true }).put(
             if(!dt_previsao_entrega) return res.status(400).json({ valido: false, msg: 'dt_previsao_entrega não informado!'})
             if(!km_inicial) return res.status(400).json({ valido: false, msg: 'km_inicial não informado!'})
             if(!observacoes) return res.status(400).json({ valido: false, msg: 'observacoes não informado!'})
-            if(!lavagem_inclusa) return res.status(400).json({ valido: false, msg: 'lavagem_inclusa não informado!'})
             if(!nivel_combustivel) return res.status(400).json({ valido: false, msg: 'nivel_combustivel não informado!'})
             if(!veiculo_id) return res.status(400).json({ valido: false, msg: 'veiculo_id não informado!'})
             if(!cliente_id) return res.status(400).json({ valido: false, msg: 'cliente_id não informado!'})
