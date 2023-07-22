@@ -39,9 +39,9 @@ module.exports = Router({ mergeParams: true }).put(
             locacao.observacoes = observacoes
             locacao.lavagem_inclusa = lavagem_inclusa
             locacao.nivel_combustivel = nivel_combustivel
-            locacao.veiculo_id = veiculo_id
-            locacao.cliente_id = cliente_id
-            locacao.seguradora_id = seguradora_id
+            locacao.veiculoId = veiculo_id
+            locacao.clienteId = cliente_id
+            locacao.seguradoraId = seguradora_id
 
 			await locacao.save()
 
