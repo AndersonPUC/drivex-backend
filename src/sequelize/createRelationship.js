@@ -116,6 +116,13 @@ module.exports = sequelize => {
 		}
 	})
 
+	seguradora.hasMany(usuario, {
+		as: 'usuarios',
+		onDelete: 'CASCADE',
+		foreignKey: {
+			allowNull: false
+		}
+	})
 
 	empresa.belongsTo(municipio),
 	endereco.belongsTo(municipio),

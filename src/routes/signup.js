@@ -33,7 +33,9 @@ module.exports = Router({ mergeParams: true }).post(
 				nome,
 				email,
 				senha: senhaBcrypt,
-				empresaId: 1
+				empresaId: 1,
+				seguradoraId: 1,
+				inativo: true
 			})
 
 			return res.status(200).json({ valido: true, msg: 'Usuário criado com sucesso!' })
