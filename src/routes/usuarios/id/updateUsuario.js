@@ -9,12 +9,13 @@ module.exports = Router({ mergeParams: true }).put(
 	async (req, res, next) => {
 		try {
 			const { id } = req.params
-			const { nome, email, role } = req.body
+			const { nome, email, role, seguradoraId } = req.body
 			const { models } = req.db
 
 			if (!nome) return res.status(400).json({ valido: false, msg: 'Nome não informado!' })
 			if (!email) return res.status(400).json({ valido: false, msg: 'Email não informado!' })
 			if (!role) return res.status(400).json({ valido: false, msg: 'UserRole não informado!' })
+			if (!seguradoraId) return res.status(400).json({ valido: false, msg: 'SeguradoraId não informado!' })
 
 			const usuario = await models.usuario.findByPk(id)
 			if (!usuario) return res.status(400).json({ valido: false, msg: 'Usuário não cadastrado!' })
@@ -26,6 +27,7 @@ module.exports = Router({ mergeParams: true }).put(
 			usuario.nome = nome
 			usuario.email = email
 			usuario.role = role
+			usuario.seguradoraId = seguradoraId
 
 			await usuario.save()
 
