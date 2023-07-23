@@ -15,7 +15,7 @@ module.exports = Router({ mergeParams: true }).post(
                 nivel_combustivel,
                 veiculo_id,
                 cliente_id,
-                seguradora_id,
+                // seguradora_id,
             } = req.body
 			const { models } = req.db
 
@@ -26,7 +26,7 @@ module.exports = Router({ mergeParams: true }).post(
             if(!nivel_combustivel) return res.status(400).json({ valido: false, msg: 'nivel_combustivel não informado!'})
             if(!veiculo_id) return res.status(400).json({ valido: false, msg: 'veiculo_id não informado!'})
             if(!cliente_id) return res.status(400).json({ valido: false, msg: 'cliente_id não informado!'})
-            if(!seguradora_id) return res.status(400).json({ valido: false, msg: 'seguradora_id não informado!'})
+            // if(!seguradora_id) return res.status(400).json({ valido: false, msg: 'seguradora_id não informado!'})
             
             
             //if(!empresa_id) return res.status(400).json({ valido: false, msg: 'empresa_id não informado!'})
