@@ -18,8 +18,6 @@ module.exports = Router({ mergeParams: true }).post(
 			const usuario = await Usuario.findOne({ where: { email } })
 			if (!usuario) return res.status(400).json({ valido: false, msg: 'E-mail e/ou senha inválidos!' })
 
-			if (usuario.inativo) return res.status(400).json({ valido: false, msg: 'O usuário está inativo!' })
-
 			if (!bcrypt.compareSync(senha, usuario.senha)) return res.status(400).json({ valido: false, msg: 'E-mail e/ou senha inválidos!' })
 
 			const expirationToken = Math.floor(Date.now() / 1000 + 60 * 60 * 24 * 3)
