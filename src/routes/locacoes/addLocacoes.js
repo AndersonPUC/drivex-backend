@@ -19,6 +19,8 @@ module.exports = Router({ mergeParams: true }).post(
             } = req.body
 			const { models } = req.db
 
+
+    
             if(!dt_locacao) return res.status(400).json({ valido: false, msg: 'dt_locacao não informado!'})
             if(!dt_previsao_entrega) return res.status(400).json({ valido: false, msg: 'dt_previsao_entrega não informado!'})
             if(!km_inicial) return res.status(400).json({ valido: false, msg: 'km_inicial não informado!'})
@@ -37,7 +39,10 @@ module.exports = Router({ mergeParams: true }).post(
             const cliente = await models.cliente.findByPk(cliente_id)
 			if(!cliente) return res.status(400).json({ valido: false, msg: 'Cliente não existe!' })
             
-            const seguradora = await models.seguradora.findByPk(seguradora_id)
+            const usuario = await models.usuario.findByPk(req.usuario.id)
+            if(!usuario) return res.status(400).json({ valido: false, msg: 'Usuario não existe.'})
+
+            const seguradora = await models.seguradora.findByPk(usuario.seguradoraId)
 			if(!seguradora) return res.status(400).json({ valido: false, msg: 'Seguradora não existe!' })
 
             const empresa = await models.empresa.findByPk(1)
@@ -51,7 +56,7 @@ module.exports = Router({ mergeParams: true }).post(
                 nivel_combustivel,
                 veiculoId: veiculo.id,
                 clienteId: cliente.id,
-                seguradoraId: seguradora.id,
+                seguradoraId: 1,//seguradora.id,
                 empresaId: empresa.id,
                 municipioId: empresa.municipioId
 			})
